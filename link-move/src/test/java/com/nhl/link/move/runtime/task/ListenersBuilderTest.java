@@ -12,6 +12,7 @@ import com.nhl.link.move.annotation.AfterTargetsMapped;
 import com.nhl.link.move.annotation.AfterTargetsMatched;
 import com.nhl.link.move.annotation.AfterTargetsMerged;
 import com.nhl.link.move.runtime.task.createorupdate.CreateOrUpdateSegment;
+import com.nhl.link.move.runtime.task.createorupdate.CreateOrUpdateStage;
 import com.nhl.link.move.runtime.task.createorupdate.MockCreateOrUpdateListener;
 import com.nhl.link.move.runtime.task.delete.DeleteSegment;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,13 +29,13 @@ import static org.mockito.Mockito.mock;
 
 public class ListenersBuilderTest {
 
-    private ListenersBuilder builder;
+    private ListenersBuilder<CreateOrUpdateSegment, CreateOrUpdateStage> builder;
     private MockCreateOrUpdateListener listener;
 
     @BeforeEach
     public void before() {
         this.listener = new MockCreateOrUpdateListener();
-        this.builder = new ListenersBuilder(
+        this.builder = new ListenersBuilder<CreateOrUpdateSegment, CreateOrUpdateStage>(
                 AfterSourceRowsExtracted.class,
                 AfterSourceRowsConverted.class,
                 AfterSourcesMapped.class,
